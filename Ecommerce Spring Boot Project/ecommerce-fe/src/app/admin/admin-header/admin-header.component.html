@@ -1,0 +1,36 @@
+<header class="header">
+  <div class="header-icon">
+
+    <!--    Notifications-->
+    <div class="icon-popup-container" (click)="isToggleNotifications = true"
+         (mouseleave)="isToggleNotifications = false">
+      <i class="fa-solid fa-bell"></i>
+      <div *ngIf="isToggleNotifications" class="popup popup-content">
+        <p>No new notifications</p>
+      </div>
+    </div>
+
+    <!--    User-->
+    <div class="icon-popup-container" (click)="isToggleMenu = true" (mouseleave)="isToggleMenu = false">
+      <i class="fa-solid fa-user"></i>
+      <div *ngIf="isToggleMenu">
+        <div class="popup popup-content">
+          <ul>
+            <li routerLink="/admin/profile">
+              <a routerLink="/admin/profile">Settings</a>
+              <span>
+                <i class="fa-solid fa-gear"></i>
+              </span>
+            </li>
+            <li routerLink="/auth/login">
+              <a routerLink="/auth/login">Logout</a>
+              <span>
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

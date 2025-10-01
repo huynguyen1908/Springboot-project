@@ -1,0 +1,104 @@
+.products-list{
+  background: #e7e7e3;
+  padding: 25px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.header button{
+  border: 1px solid black;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  background: black;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 16px 8px 16px;
+}
+
+.h1{
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.product-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 16px;
+  background: #dddddd;
+  border-radius: 16px;
+  gap: 16px;
+}
+
+.product{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding : 20px;
+  border-radius: 10px;
+  background: white;
+}
+
+.product:hover {
+  background: #cdcdcd;
+  transition: 0.2s;
+}
+
+.information{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.information img{
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.information-text{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.information-text p:first-child{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.sales-grid{
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 2px solid black;
+  align-content: center;
+  padding: 16px;
+
+}
+
+.sales-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sales-info:not(:first-child) {
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
+}

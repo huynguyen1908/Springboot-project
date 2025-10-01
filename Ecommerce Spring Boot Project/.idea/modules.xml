@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Ecommerce Spring Boot Project.iml" filepath="$PROJECT_DIR$/.idea/Ecommerce Spring Boot Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Inventory-Service/Inventory-Service.iml" filepath="$PROJECT_DIR$/Inventory-Service/Inventory-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Order-Service/Order-Service.iml" filepath="$PROJECT_DIR$/Order-Service/Order-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Product-Service/Product-Service.iml" filepath="$PROJECT_DIR$/Product-Service/Product-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/User-Service/User-Service.iml" filepath="$PROJECT_DIR$/User-Service/User-Service.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,85 @@
+<app-header></app-header>
+<main class="mx-auto px-40 pb-12 pt-24">
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-[82px] mt-[32px] items-stretch px-[99px]">
+    <!-- Product Image -->
+    <div>
+      <img *ngFor="let image of images" [src]="image"
+        class="rounded-lg w-full object-cover"
+      />
+    </div>
+
+    <!-- Product Info -->
+    <div class="mb-6 w-129">
+      <h2 class="text-4xl font-semibold mb-6">{{ product.name }}</h2>
+      <h3 class="text-gray-500 mb-6">Subheading</h3>
+      <h3 class="text-xl font-semibold mb-6">{{product.price}}</h3>
+      <p class="text-gray-600 mb-6">
+        {{ product.description }}
+      </p>
+      <div class="flex items-center space-x-[10px]">
+        <div class="flex items-center justify-between border border-black rounded-[10px] w-[123px] h-[64px] px-3">
+          <button class="text-lg">-</button>
+          <span class="text-base font-medium">1</span>
+          <button class="text-lg">+</button>
+        </div>
+        <button class="bg-black text-white w-full px-[48px] py-[17px] rounded-[15px] text-[20px] font-normal">
+          Add to cart
+        </button>
+        <button class="bg-black text-white w-full px-[48px] py-[17px] rounded-[15px] text-[20px] font-normal">
+          Buy now
+        </button>
+      </div>
+
+      <p class="text-sm text-gray-400">Text box for additional details or fine print</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-semibold mb-6">Related products</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Product card -->
+      <div class="space-y-2">
+        <img src="https://source.unsplash.com/400x300/?fruit,pear" class="rounded-md w-full"/>
+        <h3 class="font-medium">Product</h3>
+        <p class="text-sm text-gray-500">Description of first product</p>
+        <p class="text-sm font-semibold">$10.99</p>
+      </div>
+
+      <div class="space-y-2">
+        <img src="https://source.unsplash.com/400x300/?vegetable,radish" class="rounded-md w-full"/>
+        <h3 class="font-medium">Product</h3>
+        <p class="text-sm text-gray-500">Description of second product</p>
+        <p class="text-sm font-semibold">$10.99</p>
+      </div>
+
+      <div class="space-y-2">
+        <img src="https://source.unsplash.com/400x300/?fruit,watermelon" class="rounded-md w-full"/>
+        <h3 class="font-medium">Product</h3>
+        <p class="text-sm text-gray-500">Description of third product</p>
+        <p class="text-sm font-semibold">$10.99</p>
+      </div>
+
+      <div class="space-y-2">
+        <img src="https://source.unsplash.com/400x300/?mushroom" class="rounded-md w-full"/>
+        <h3 class="font-medium">Product</h3>
+        <p class="text-sm text-gray-500">Description of fourth product</p>
+        <p class="text-sm font-semibold">$10.99</p>
+      </div>
+
+      <div class="space-y-2">
+        <img src="https://source.unsplash.com/400x300/?vegetable,pepper" class="rounded-md w-full"/>
+        <h3 class="font-medium">Product</h3>
+        <p class="text-sm text-gray-500">Description of fifth product</p>
+        <p class="text-sm font-semibold">$10.99</p>
+      </div>
+
+      <div class="space-y-2">
+        <img src="https://source.unsplash.com/400x300/?fruit,apricot" class="rounded-md w-full"/>
+        <h3 class="font-medium">Product</h3>
+        <p class="text-sm text-gray-500">Description of sixth product</p>
+        <p class="text-sm font-semibold">$10.99</p>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

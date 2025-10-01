@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -10,6 +11,13 @@
         <option value="$PROJECT_DIR$/Product-Service/pom.xml" />
         <option value="$PROJECT_DIR$/Feedback-Service/pom.xml" />
         <option value="$PROJECT_DIR$/Orderdetail-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/Gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Cloudinary-Client/pom.xml" />
+        <option value="$PROJECT_DIR$/Inventory-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Notification-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/common/pom.xml" />
+        <option value="$PROJECT_DIR$/client/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

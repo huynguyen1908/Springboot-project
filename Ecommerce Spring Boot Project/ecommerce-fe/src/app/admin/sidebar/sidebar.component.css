@@ -1,0 +1,112 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  transition: width 0.3s ease;
+  overflow: auto;
+  position: relative;
+  height: 100vh;
+  z-index: 11;
+}
+
+.sidebar.closed {
+  width: 60px;
+}
+
+.sidebar.closed ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar.closed ul li{
+  justify-content: center;
+  align-items: center;
+  justify-items:  center;
+  display: flex;
+  font-size: 20px;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.sidebar.closed ul li:hover {
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
+.sidebar button {
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  cursor:  pointer;
+}
+
+.sidebar ul li:hover {
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  padding:10px;
+  cursor:  pointer;
+}
+
+.sidebar ul li a {
+  color: black;
+}
+
+.menu-parent {
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.submenu-wrapper {
+  padding-left: 20px;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid black;
+  transition: max-height 0.3s ease;
+}
+
+.submenu li {
+  margin-left: 20px
+}
+
+.arrow{
+  align-self: flex-end;
+}
+
+

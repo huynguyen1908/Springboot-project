@@ -1,0 +1,9 @@
+GET http://localhost:8089/api/orders/user/a8ed6b48-06cb-4fd7-a014-964446c87b1a/orders
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-08-27T091550.404.json
+
+###
+

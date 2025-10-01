@@ -1,0 +1,103 @@
+<div class="create-product">
+  <h1>Create Product</h1>
+  <div class="create-product-container">
+    <div class="create-product-grid">
+      <!--    Enter info-->
+      <form id="create-product-form" (ngSubmit)="createProduct()" class="information">
+        <div class="input-form">
+          <label for="name">Product Name</label>
+          <input type="text" id="name" name="name" placeholder="Adidas Ultra Boost" [(ngModel)]="request.name">
+        </div>
+
+        <div class="input-form">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="2" [(ngModel)]="request.description"></textarea>
+        </div>
+
+        <div class="input-form">
+          <label for="category">Category</label>
+          <div class="custom-select-wrapper">
+            <select id="category" name="category"
+                    [(ngModel)]="request.categoryId"
+                    class="custom-select">
+              <option [ngValue]="null" disabled>
+                {{ categoryName || 'Select Category' }}
+              </option>
+              <option *ngFor="let category of categories | keyvalue" [value]="category.key">
+                {{ category.value }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-form">
+          <label for="brand">Brand Name</label>
+          <input type="text" id="brand" name="brand" placeholder="Adidas" [(ngModel)]="request.brand">
+        </div>
+
+        <div class="flex-column">
+          <div class="input-form">
+            <label for="sku">SKU</label>
+            <input type="text" id="sku" name="sku" [(ngModel)]="request.skuCode">
+          </div>
+          <div class="input-form">
+            <label for="quantity">Stock Quantity</label>
+            <input type="text" id="quantity" name="quantity" placeholder="9999" [(ngModel)]="request.quantity">
+          </div>
+        </div>
+
+        <div class="flex-column">
+          <div class="input-form">
+            <label for="price">Regular Price</label>
+            <input type="text" id="price" name="price" placeholder="$" [(ngModel)]="request.price">
+          </div>
+          <div class="input-form">
+            <label for="sale price">Discount</label>
+            <input type="text" id="salePrice" name="salePrice" placeholder="%" [(ngModel)]="request.discount">
+          </div>
+        </div>
+      </form>
+
+      <!--    Image-->
+      <div class="image-container">
+        <div class="gallery">
+          <p>Product Gallery</p>
+          <!--            Drag, upload area-->
+          <div class="upload-area" (drop)="onDrop($event)" (dragover)="onDragOver($event)"
+               (dragleave)="onDragLeave($event)">
+            <p>Drop your image here, or browse</p>
+<!--            <button type="button" class="upload-button" (click)="fileInput.click()">+</button>-->
+            <input type="file" multiple hidden #fileInput (change)="onFileSelected($event)"/>
+            <i class="upload-icon" class="fa-solid fa-image" (click)="fileInput.click()"></i>
+          </div>
+        </div>
+
+        <!--        Load image list-->
+        <div class="upload-list">
+          <div *ngFor="let item of uploadProgress; let i = index" class="upload-list-items">
+            <div class="upload-list-img">
+              <img [src]="item.path" alt="Uploaded Image">
+            </div>
+            <div class="progress-area">
+              <p>{{ item.name }}</p>
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="item.progress"></div>
+              </div>
+            </div>
+            <div class="upload-status-icon">
+              <i *ngIf="item.isDone" class="fa-solid fa-check fa-lg"></i>
+            </div>
+            <div class="upload-delete-icon">
+              <i type="button" class="fa-solid fa-trash" (click)="removeImage(i)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div></div>
+      <div class="button-container">
+        <button [disabled]="isSubmitting" class="button-create" type="submit" form="create-product-form">Create</button>
+        <button class="button-cancel" [routerLink]="'/admin/product-list'">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

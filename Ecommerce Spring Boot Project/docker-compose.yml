@@ -43,7 +43,15 @@ services:
       - eureka
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
-  
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
 
   mysql-notification:
     image: mysql:8.0
@@ -255,3 +263,4 @@ volumes:
   mysql-inventory-data:
   mysql-notification-data:
   mysql-payment-data:
+  redis-data:

@@ -1,0 +1,56 @@
+<div class="user-detail-container">
+  <h1>User details</h1>
+  <div class="user-container">
+    <div class="user-grid">
+      <div>
+        <div class="image-container">
+          <img [src]="this.user?.avatarUrl"/>
+          <p>{{user?.username}}</p>
+        </div>
+        <div class="information-container">
+          <div class="detail-container">
+            <i class="fa-solid fa-user"></i>
+            <span>{{this.user?.fullName}}</span>
+          </div>
+          <div class="detail-container">
+            <i class="fa-solid fa-mail-reply"></i>
+            <span>{{this.user?.email}}</span>
+          </div>
+          <div class="detail-container">
+            <i class="fa-solid fa-address-book"></i>
+            <span>{{this.user?.address}}</span>
+          </div>
+          <div class="detail-container">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span>{{this.user?.phoneNumber}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="order-history-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="!dataExisted">
+              <tr>
+                <td colspan="4">No order history available.</td>
+              </tr>
+            </ng-container>
+            <tr *ngFor="let order of orders">
+              <td>{{order.orderId}}</td>
+              <td>{{order.paymentMethod}}</td>
+              <td>{{order.status}}</td>
+              <td>{{order.orderDate | date:'short'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

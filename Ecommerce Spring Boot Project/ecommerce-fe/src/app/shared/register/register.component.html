@@ -1,0 +1,114 @@
+<section class="bg-[#1f41a9] w-full h-screen flex items-center justify-center">
+  <div class=" flex justify-center items-center">
+    <div class="items-center">
+      <h2 class="text-white font-bold text-[40px] font-sans mb-[37px] text-center">Register</h2>
+      <form [formGroup]="registerForm"
+            (ngSubmit)="onSubmit()">
+        <div>
+          <div>
+            <input
+              type="text"
+              (blur)="trimControl('fullName')"
+              formControlName="fullName"
+              placeholder="Full name"
+              class="px-2 py-3 text-white border-2 border-white rounded-[15px] w-[352px] h-[45px]"
+            />
+            <div *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched"
+                 class="text-red-500 text-sm mt-1">
+              Full name is required
+            </div>
+          </div>
+          <!-- Ví dụ cho username -->
+          <div>
+            <input
+              type="text"
+              formControlName="username"
+              (blur)="trimControl('username')"
+              placeholder="Username"
+              class="px-2 py-3 text-white border-2 border-white rounded-[15px] mt-[22px] w-[352px] h-[45px]"
+            />
+            <div class="text-red-500 text-sm mt-1" *ngIf="registerForm.get('username') as usernameControl">
+              <ng-container *ngIf="usernameControl?.touched">
+                <ng-container *ngIf="usernameControl.hasError('required')">
+                  Username is required
+                </ng-container>
+                <ng-container *ngIf="usernameControl.hasError('apiError')">
+                  {{ usernameControl.getError('apiError') }}
+                </ng-container>
+              </ng-container>
+            </div>
+            <!--          <div class="text-red-500 text-sm mt-1" *ngIf="registerForm.get('username') as usernameControl">-->
+            <!--            <ng-container *ngIf="registerForm.get('username').hasError('required')">-->
+            <!--              Username is required-->
+            <!--            </ng-container>-->
+            <!--            <ng-container *ngIf="registerForm.get('username').hasError('apiError')">-->
+            <!--              {{ registerForm.get('username').getError('apiError') }}-->
+            <!--            </ng-container>-->
+
+            <!--          </div>-->
+          </div>
+
+          <div>
+            <input
+              type="text"
+              formControlName="password"
+              (blur)="trimControl('password')"
+              placeholder="Password"
+              class="px-2 py-3 text-white border-2 border-white rounded-[15px] mt-[22px] w-[352px] h-[45px]"
+            />
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                 class="text-red-500 text-sm mt-1">
+              Password is required
+            </div>
+          </div>
+          <div>
+            <input
+              type="text"
+              formControlName="email"
+              (blur)="trimControl('email')"
+              placeholder="Email"
+              class="px-2 py-3 text-white border-2 border-white rounded-[15px] mt-[22px] w-[352px] h-[45px]"
+            />
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                 class="text-red-500 text-sm mt-1">
+              Email is required
+            </div>
+          </div>
+          <div>
+            <input
+              type="text"
+              (blur)="trimControl('phoneNumber')"
+              formControlName="phoneNumber"
+              placeholder="Phone number"
+              class="px-2 py-3 text-white border-2 border-white rounded-[15px] mt-[22px] w-[352px] h-[45px]"
+            />
+            <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
+                 class="text-red-500 text-sm mt-1">
+              Phone number is required
+            </div>
+            <div>
+              <input
+                type="text"
+                (blur)="trimControl('address')"
+                formControlName="address"
+                placeholder="Address"
+                class="px-2 py-3 text-white border-2 border-white rounded-[15px] mt-[22px] w-[352px] h-[45px]"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid"
+            class="px-2 py-3 text-white border-2 border-white rounded-[15px] mt-[22px] w-[352px] h-[45px] hover:bg-cyan-200 hover:text-black transition duration-300 disabled:bg-gray-400 disabled:text-neutral-950">
+            Submit
+          </button>
+          <div *ngIf="generalError" class="text-red-500 text-sm mt-3 text-center">
+            {{ generalError }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
