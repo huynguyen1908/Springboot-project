@@ -21,4 +21,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT u from User u order by u.createdAt")
     Page<User> findAll(Pageable pageable);
     boolean existsByEmail(String email);
+
+    @Query(value = "select u.username from User u where u.userId = :userId")
+    String getUsernameByUserId(String userId);
 }

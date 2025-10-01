@@ -1,15 +1,15 @@
 package com.example.Product.Service.controller;
 
 import com.example.Product.Service.dto.request.CreateProductRequest;
+import com.example.Product.Service.dto.request.ProductFilter;
 import com.example.Product.Service.dto.request.UpdateProductRequest;
 import com.example.Product.Service.dto.response.ProductDTO;
-import com.example.Product.Service.entity.Product;
-import com.example.Product.Service.service.impl.ProductServiceImpl;
+import com.example.Product.Service.repository.ProductRepository;
 import com.example.Product.Service.service.interfaces.ProductService;
 import jakarta.validation.Valid;
 import org.example.dto.response.ApiResponse;
+import org.example.exception.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +25,9 @@ import java.util.Map;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ProductRepository productRepository;
 
 //    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
@@ -45,8 +48,12 @@ public class ProductController {
     }
 
     @GetMapping("/get-list")
-    public ResponseEntity<Page<ProductDTO>> getAllProducts(Pageable pageable) {
-        return ResponseEntity.ok().body(productService.getProductList(pageable));
+    public ApiResponse<Object> getAllProducts(Pageable pageable) {
+        return ApiResponse.builder()
+                .code(StatusCode.SUCCESS.getCode())
+                .message(StatusCode.SUCCESS.getMessage())
+                .data(productService.getProductList(pageable))
+                .build();
     }
 
     @PutMapping("/update/{productId}")
@@ -78,4 +85,17 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/get-productName/{skuCode}")
+    public String getProductNameBySkuCode(@PathVariable("skuCode") String skuCode) {
+        return productRepository.getProductNameBySkuCode(skuCode);
+    }
+
+    @GetMapping("/filter")
+    public ApiResponse<?> getProductsByFilter(@RequestBody ProductFilter filter, Pageable pageable) {
+        return ApiResponse.builder()
+                .code(StatusCode.SUCCESS.getCode())
+                .message(StatusCode.SUCCESS.getMessage())
+                .data(productService.getProductsByFilter(filter, pageable))
+                .build();
+    }
 }

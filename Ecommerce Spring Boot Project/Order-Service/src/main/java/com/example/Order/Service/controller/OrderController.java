@@ -56,10 +56,9 @@ public class OrderController {
 
     @PutMapping("{orderId}/status")
 //    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> updateStatus(
+    public ApiResponse<Object> updateStatus(
             @PathVariable String orderId,
             @RequestParam String status) {
-        orderService.updateOrderStatus(orderId, status);
-        return ResponseEntity.ok().build();
+        return orderService.updateOrderStatus(orderId, status);
     }
 }
