@@ -1,0 +1,331 @@
+.product-detail-container {
+  background: #e7e7e3;
+  padding: 25px;
+  width: 100%;
+  overflow: auto;
+}
+
+.product-detail-container h1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px;
+  margin-bottom: 24px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.product-container {
+  padding: 16px;
+  background: #dddddd;
+  border-radius: 16px;
+}
+
+.product-grid{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  overflow: auto;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.information{
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 24px;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-form label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.input-form input {
+  border: #232321 solid 1px;
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+}
+
+.input-form textarea {
+  border: #232321 solid 1px;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-select {
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  appearance: none;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+}
+
+/*.custom-select:focus {*/
+/*  box-shadow: 0 0 6px rgba(79, 70, 229, 0.5);*/
+/*  outline: none;*/
+/*}*/
+
+.custom-select-wrapper::after {
+  content: "▼";
+  font-size: 14px;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+
+.image-container{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gallery p{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.gallery-carousel {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  /*position: relative;*/
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+/*.owl-carousel{*/
+/*  background: #4A69E2;*/
+/*}*/
+
+.carousel-image {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+.remove-image{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  /*absolute top-2 right-2 bg-red-500 text-white p-1 rounded cursor-pointer*/
+}
+
+::ng-deep .owl-prev,
+::ng-deep .owl-next {
+  background: linear-gradient(45deg, #4A69E2, #6B7FFF) !important;
+  color: white !important;
+}
+
+::ng-deep .owl-prev:hover,
+::ng-deep .owl-next:hover {
+  background: linear-gradient(45deg, #3A59D2, #5B6FEF) !important;
+}
+
+
+.upload-area {
+  padding: 16px;
+  border: 1px black dashed;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.upload-area p{
+  color: #70706E;
+  font-size: 14px;
+}
+
+.upload-area i {
+  font-size: 20px;
+  color: #4A69E2;
+  cursor: pointer;
+  justify-self: center;
+  align-self:  center;
+}
+
+.upload-list {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
+}
+
+.upload-list-items {
+  background: #FAFAFA;
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr;
+  gap: 16px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+
+.upload-list-img {
+  border-radius: 8px;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+}
+
+.upload-list-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.progress-area{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.progress-area p {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.progress-bar{
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #3b82f6;
+}
+
+.upload-status-icon {
+  color: #3b82f6;
+  background: white;
+  padding: 6px;
+  justify-self: center;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-self: right;
+  align-items: center;
+}
+
+
+.upload-delete-icon {
+  color: red;
+  padding : 6px;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-self: right;
+  align-items: center;
+}
+
+.button-update {
+  border: black solid 1px;
+  border-radius: 8px;
+  padding: 8px 30px 8px 30px;
+  font-size: 14px;
+}
+.button-update:hover {
+  background: black;
+  color: white;
+  transition: 0.2s;
+}
+
+.button-cancel {
+  background: #D00000;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 30px 8px 30px;
+  font-size: 14px;
+}
+
+.button-cancel:hover {
+  background: white;
+  color: #D00000;
+  transition: 0.2s;
+  border: black solid 1px;
+  border-radius: 8px;
+}
+
+/*.success-snackbar {*/
+/*  background-color: #4caf50;*/
+/*  color: white;*/
+/*}*/
+
+/*.error-snackbar {*/
+/*  background-color: #f44336;*/
+/*  color: white;*/
+/*}*/
+
+::ng-deep .success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}

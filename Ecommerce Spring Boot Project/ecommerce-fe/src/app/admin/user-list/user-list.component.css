@@ -1,0 +1,112 @@
+.user-list {
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e3;
+  height: 100%;
+  width: 100%;
+  padding: 25px;
+  overflow: auto;
+}
+
+.user-list h1{
+  font-size: 24px;
+  font-weight: bold;
+  align-self: flex-start;
+  margin: 24px;
+}
+.user-grid-container{
+  border-radius: 16px;
+  gap: 16px;
+  background: #dddddd;
+  padding: 16px;
+}
+
+.user-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap:  16px;
+  border-radius: 16px;
+  background: white;
+  align-content: center;
+  overflow: auto;
+}
+
+.user-grid h2 {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+.user-grid-header {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 0.3fr 1.5fr 1fr 1.5fr 1fr 1fr;
+  color: #232321;
+  font-weight: bold;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  min-width: 900px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.user-grid-header p {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.user-grid-users {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 0.3fr 1.5fr 1fr 1.5fr 1fr 1fr;
+  color: black;
+  font-weight: bolder;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #cdcdcd ;
+  cursor: pointer;
+}
+
+.user-grid-users p {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.user-image-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin: 10px;
+}
+
+.toggle-switch {
+  cursor: pointer;
+  font-size: 20px;
+  justify-self: center;
+}
+
+.on {
+  color: dodgerblue;
+}
+
+.off  {
+  color: gray;
+}
+
+::ng-deep .success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}

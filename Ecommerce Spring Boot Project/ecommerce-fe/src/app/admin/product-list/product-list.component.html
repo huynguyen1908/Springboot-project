@@ -1,0 +1,30 @@
+<div class="products-list">
+  <div class="header">
+    <h1 class="h1">All Products</h1>
+    <button [routerLink]="['/admin/create-product']">Add New Product</button>
+  </div>
+  <div class="product-grid">
+    <a *ngFor="let product of products" [routerLink]="['/admin/product-detail', product.productId]" class="product">
+      <div class="information">
+        <img *ngIf="getImage(product.productId)[0]" [src]="getImage(product.productId)[0]">
+        <div class="information-text">
+          <p>{{product.name}}</p>
+          <p>{{product.brand}}</p>
+          <p>{{product.price | currency}}</p>
+          <p></p>
+        </div>
+      </div>
+      <div class="sales-grid">
+        <div class="sales-info">
+          <p>Total sales</p>
+          <p>1234</p>
+        </div>
+        <div class="sales-info">
+          <p>Remaining Products</p>
+          <p>1234</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+

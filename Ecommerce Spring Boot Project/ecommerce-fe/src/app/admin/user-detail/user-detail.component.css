@@ -1,0 +1,99 @@
+.user-detail-container {
+  background: #e7e7e3;
+  padding: 25px;
+  width: 100%;
+  overflow: auto;
+}
+
+.user-detail-container h1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px;
+  margin-bottom: 24px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.user-container {
+  padding: 16px;
+  background: #dddddd;
+  border-radius: 16px;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  overflow: auto;
+}
+
+.image-container{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid dimgrey;
+  justify-content: center;
+  align-items:  center;
+  padding: 8px;
+}
+
+.image-container img{
+  width: 70%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #232321;
+  overflow: hidden;
+}
+
+.image-container p {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.information-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+}
+
+.detail-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 8px;
+  align-items:  center;
+}
+
+.detail-container i{
+  justify-self:  center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+thead {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  gap : 16px;
+  padding: 16px;
+}
+
+::ng-deep .success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}

@@ -1,0 +1,55 @@
+<div class="sidebar" [class.closed]="isClosed">
+  <button (click)="clickClosed()">☰</button>
+  <ul *ngIf="!isClosed">
+    <li routerLink="/admin/dashboard">
+      <i class="fa-solid fa-tachometer-alt"></i>
+      <a href="/admin/dashboard">DASHBOARD</a>
+    </li>
+    <li routerLink="/admin/user-list">
+      <i class="fa-solid fa-users"></i>
+      <a href="/admin/user-list">USERS</a>
+    </li>
+    <li routerLink="/admin/product-list">
+      <i class="fa-solid fa-box-open"></i>
+      <a href="/admin/product-list">PRODUCTS</a>
+    </li>
+    <li routerLink="/admin/order-list">
+      <i class="fa-solid fa-shopping-cart"></i>
+      <a href="/admin/order-list">ORDERS</a>
+    </li>
+    <li>
+      <div class="menu-parent">
+        <i class="fa-solid fa-list"></i>
+        <span class="label" routerLink="/category">CATEGORY</span>
+        <span class="arrow" (click)="toggleSubMenu()">{{ isSubMenu ? '▲' : '▼' }}</span>
+      </div>
+    </li>
+    <div class="submenu-wrapper" *ngFor="let category of categories">
+      <ul class="submenu" *ngIf="isSubMenu" >
+        <li>{{category.name}}</li>
+<!--        <li>ADIDAS</li>-->
+<!--        <li>PUMA</li>-->
+<!--        <li>LINING</li>-->
+      </ul>
+    </div>
+  </ul>
+  <ul *ngIf="isClosed">
+    <li routerLink="/admin/dashboard">
+      <i class="fa-solid fa-tachometer-alt"></i>
+    </li>
+    <li routerLink="/admin/user-list">
+      <i class="fa-solid fa-users"></i>
+    </li>
+    <li routerLink="/admin/product-list">
+      <i class="fa-solid fa-box-open"></i>
+    </li>
+    <li routerLink="/admin/order-list">
+      <i class="fa-solid fa-shopping-cart"></i>
+    </li>
+    <li>
+      <i class="fa-solid fa-list"></i>
+    </li>
+  </ul>
+</div>
+
+

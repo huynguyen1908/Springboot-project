@@ -1,0 +1,233 @@
+.order-detail {
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e3;
+  width: 100%;
+  padding: 25px;
+}
+
+.order-detail h1 {
+  font-size: 24px;
+  font-weight: bold;
+  align-self: flex-start;
+  margin: 24px;
+}
+
+.order-detail-container{
+  border-radius: 16px;
+  gap: 16px;
+  background: #dddddd;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.order-information-container{
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 16px;
+  gap: 16px;
+  background: white;
+}
+
+.order-information-flex{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.order-information-flex p{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.order-information-flex button{
+  background: #FFA52F;
+  color: black;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.order-activity-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.order-date-container{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+}
+
+.activity-flex{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Order Information Grid */
+.order-info-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Order Payment Grid */
+.order-payment-grid{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.customer-container{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+  padding: 16px;
+}
+
+.icon-container {
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+  background: #4A69E2;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+}
+
+.customer-detail-container{
+  gap: 16px;
+}
+.customer-detail-container h2{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.customer-detail-container p{
+  font-size: 14px;
+}
+
+.note-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.notes-container h2{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.note-area {
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.order-grid-container{
+  border-radius: 16px;
+  gap: 16px;
+  background: #dddddd;
+  padding: 16px;
+}
+
+.order-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 16px;
+  gap: 16px;
+  background: white;
+}
+
+.order-grid h2 {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+.order-grid-header {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr;
+  color: rgba(0, 0, 0, 0.7); /* đen với độ mờ 80% */
+  font-weight: bold;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.order-grid-header p {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.order-grid-orders {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr;
+  color: black;
+  font-weight: bolder;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #cdcdcd ;
+}
+
+.order-grid-orders p {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.order-grid-orders:hover {
+  background: #cdcdcd;
+  transition: 0.2s;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin: 10px;
+}
+
+.summary-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 16px;
+  width: 100%;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.8); /* chữ đen mờ 80% */
+  font-size: 14px;
+}
+
+.summary-row.total {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 16px;
+}
+
+

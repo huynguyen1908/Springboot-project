@@ -1,0 +1,115 @@
+<div class="product-detail-container">
+  <h1>Product details</h1>
+  <div class="product-container">
+    <div class="product-grid">
+      <!--    Enter info-->
+      <form id="update-product-form" *ngIf="product" (ngSubmit)="updateProduct()" class="information">
+        <div class="input-form">
+          <label for="name">Product Name</label>
+          <input type="text" id="name" name="name" [(ngModel)]="product.name">
+        </div>
+
+        <div class="input-form">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="2" [(ngModel)]="product.description"></textarea>
+        </div>
+
+        <div class="input-form">
+          <label for="category">Category</label>
+          <div class="custom-select-wrapper">
+            <select id="category" name="category"
+                    [(ngModel)]="updateProductRequest.categoryId"
+                    class="custom-select">
+              <option [ngValue]="null" disabled>
+                {{ categoryName || 'Select Category' }}
+              </option>
+              <option *ngFor="let category of categories | keyvalue" [value]="category.key">
+                {{ category.value }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-form">
+          <label for="brand">Brand Name</label>
+          <input type="text" id="brand" name="brand" [(ngModel)]="product.brand">
+        </div>
+
+        <div class="flex-column">
+          <div class="input-form">
+            <label for="sku">SKU</label>
+            <input type="text" id="sku" name="sku" [(ngModel)]="product.skuCode">
+          </div>
+          <div class="input-form">
+            <label for="quantity">Stock Quantity</label>
+            <input type="text" id="quantity" name="quantity" [(ngModel)]="product.quantity">
+          </div>
+        </div>
+
+        <div class="flex-column">
+          <div class="input-form">
+            <label for="price">Regular Price</label>
+            <input type="text" id="price" name="price" [(ngModel)]="product.price">
+          </div>
+          <div class="input-form">
+            <label for="sale price">Discount</label>
+            <input type="text" id="salePrice" name="salePrice" [(ngModel)]="product.discount">
+          </div>
+        </div>
+      </form>
+
+
+      <!--    Image-->
+      <div class="image-container">
+        <div class="gallery">
+          <p>Product Gallery</p>
+          <div class="gallery-carousel" *ngIf="productImagePaths && productImagePaths.length > 0">
+            <owl-carousel-o [options]="carouselOptions">
+              <ng-template carouselSlide *ngFor="let image of productImagePaths; let i = index">
+                <img class="carousel-image" [src]="image.path" alt="Product Image">
+                <i class="fa-solid fa-xmark remove-image"
+                   (click)="removeExistingImage(image.id, i); $event.stopPropagation()"></i>
+              </ng-template>
+            </owl-carousel-o>
+          </div>
+
+          <!--            Drag, upload area-->
+          <div class="upload-area" (drop)="onDrop($event)" (dragover)="onDragOver($event)"
+               (dragleave)="onDragLeave($event)">
+            <p>Drop your image here, or browse</p>
+            <input type="file" multiple hidden #fileInput (change)="onFileSelected($event)"/>
+            <i class="fa-solid fa-image upload-icon" (click)="fileInput.click()"></i>
+          </div>
+        </div>
+
+        <!--        Load image list-->
+        <div class="upload-list">
+          <div *ngFor="let item of uploadProgress; let i = index" class="upload-list-items">
+            <div class="upload-list-img">
+              <img [src]="item.path" alt="Uploaded Image">
+            </div>
+            <div class="progress-area">
+              <p>{{ item.name }}</p>
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="item.progress"></div>
+              </div>
+            </div>
+            <div class="upload-status-icon">
+              <i *ngIf="item.isDone" class="fa-solid fa-check fa-lg"></i>
+            </div>
+            <div class="upload-delete-icon">
+              <i type="button" class="fa-solid fa-trash" (click)="removeImage(i)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div></div>
+      <div class="button-container">
+        <button [disabled]="isSubmitting" type="button" class="button-update" id="update-product-form" (click)="updateProduct()">Update</button>
+        <button class="button-cancel" [routerLink]="'/admin/product-list'">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

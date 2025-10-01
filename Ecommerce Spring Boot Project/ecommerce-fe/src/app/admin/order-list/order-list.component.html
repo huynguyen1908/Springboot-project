@@ -1,0 +1,34 @@
+<div class="order-list">
+  <h1>Orders</h1>
+  <div class="order-grid-container">
+    <div class="order-grid">
+      <h2>Recent Purchase</h2>
+      <table>
+        <thead>
+        <tr>
+          <th></th>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total Amount</th>
+          <th>Payment Method</th>
+        </tr>
+        </thead>
+
+        <tbody *ngFor="let order of orders" [routerLink]="['/admin/order-detail/', order.orderId]">
+        <tr >
+          <td><input type="checkbox"></td>
+          <td>{{order.orderId}}</td>
+          <td>{{order.username}}</td>
+          <td>{{order?.orderDate}}</td>
+          <td>{{order?.status}}</td>
+          <td>{{order.totalAmount}}</td>
+          <td>{{order.paymentMethod}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

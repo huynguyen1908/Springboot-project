@@ -1,0 +1,121 @@
+<div class="order-detail">
+  <h1>Orders Detail</h1>
+  <div class="order-detail-container">
+    <div class="order-information-container">
+      <div class="order-information-flex">
+        <p>Orders ID: {{order?.orderId}}</p>
+        <button>{{ order?.status }}</button>
+      </div>
+
+      <div class="order-activity-flex">
+        <div class="order-date-container">
+          <i class="fa-solid fa-calendar-day"></i>
+          <span>Feb 16,2022 - Feb 20,2022</span>
+        </div>
+        <div class="activity-flex">
+          <i class="fa-solid fa-print"></i>
+          <i>Change Status</i>
+        </div>
+      </div>
+
+      <div class="order-info-grid">
+        <!--      Customer-->
+        <div class="customer-container">
+          <div class="icon-container">
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <div class="customer-detail-container">
+            <h2>Customer</h2>
+            <p>Full Name: </p>
+            <p>Email: </p>
+            <p>Phone: </p>
+          </div>
+        </div>
+
+        <!--      Order Info-->
+        <div class="customer-container">
+          <div class="icon-container">
+            <i class="fa-solid fa-box"></i>
+          </div>
+
+          <div class="customer-detail-container">
+            <h2>Order Info</h2>
+            <p>{{order!.shippingMethod}}</p>
+            <p>{{order!.paymentMethod}}</p>
+            <p>{{order!.status}} </p>
+          </div>
+        </div>
+
+        <!--      Address-->
+        <div class="customer-container">
+          <div class="icon-container">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+
+          <div class="customer-detail-container">
+            <h2>Deliver to</h2>
+            <p>{{ order!.address }} </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-payment-grid">
+        <!--      Payment-->
+        <div class="customer-container">
+          <div class="icon-container">
+            <i class="fa-solid fa-apple-pay"></i>
+          </div>
+          <div class="customer-detail-container">
+            <h2>Payment</h2>
+            <p>Method </p>
+            <p>Number </p>
+          </div>
+        </div>
+
+<!--        Note-->
+        <div class="note-container">
+          <h2>Note</h2>
+          <div class="note-area"></div>
+        </div>
+      </div>
+    </div>
+    <div class="order-grid">
+      <h2>Products</h2>
+      <div class="order-grid-header">
+        <div></div>
+        <h3>Product</h3>
+        <p>Order ID</p>
+        <p>Quantity</p>
+        <p>Price</p>
+      </div>
+      <div class="order-grid-orders" *ngFor="let orderDetail of orderDetails">
+        <input type="checkbox"/>
+        <h3>{{orderDetail.productName}}</h3>
+        <p>{{order?.orderId}}</p>
+        <p>{{orderDetail.quantity}}</p>
+        <p>{{orderDetail.price}}</p>
+      </div>
+
+      <!--    Total-->
+      <div class="summary-box">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>{{this.subtotal}}</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax (20%)</span>
+          <span>$640.32</span>
+        </div>
+        <div class="summary-row">
+          <span>Discount</span>
+          <span>$0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>{{this.subtotal}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<app-header></app-header>
+<section>
+  <div class="cart">
+    <h1 class="cart__title">Shopping Cart</h1>
+    <div class="flex-box">
+      <div class="cart-grid">
+        <!--      title-->
+        <div class="grid-header">
+          <div></div>
+          <div>Product</div>
+          <div>Name</div>
+          <div>Price</div>
+          <div>Quantity</div>
+        </div>
+        <div class="product">
+          <input type="checkbox"/>
+          <div class="image-container">
+            <img
+              src="https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com//content/61/d6/0fa2a5cc43b4aa283a2c5175c4b9/mango._TTW_._CR0,0,720,720_._SR580,580_._QL100_.jpg">
+          </div>
+          <p class="product__name">Asgard sofa</p>
+          <p class="product__price">Rs. 250,000.00</p>
+          <!--        <button class="product__quantity" >1</button>-->
+          <input type="number" class="product__quantity" value="1" min="1" />
+          <div class="remove-icon">
+            <i class="fas fa-trash-alt"></i>
+          </div>
+        </div>
+      </div>
+
+      <!--    cart total-->
+      <div class="cart-total">
+        <h2>Cart Totals</h2>
+        <p>Subtotal: Rs. 250,000.00</p>
+        <p>Total: Rs. 250,000.00</p>
+        <button class="cart-total button">Buy</button>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,271 @@
+.create-product {
+  background: #e7e7e3;
+  padding: 25px;
+  width: 100%;
+}
+
+.create-product h1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px;
+  margin-bottom: 24px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.create-product-container {
+  padding: 16px;
+  background: #dddddd;
+  border-radius: 16px;
+}
+
+.create-product-grid{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  overflow: auto;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+.information{
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 24px;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-form label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.input-form input {
+  border: #232321 solid 1px;
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+}
+
+.input-form textarea {
+  border: #232321 solid 1px;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-select {
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  appearance: none;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+}
+
+.custom-select-wrapper::after {
+  content: "▼";
+  font-size: 14px;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+.image-container{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+}
+
+.image-container img{
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.gallery{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gallery p{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.upload-area {
+  padding: 16px;
+  border: 1px black dashed;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.upload-area p{
+  color: #70706E;
+  font-size: 14px;
+}
+
+.upload-button {
+  font-size: 20px;
+  font-weight: bold;
+  border: black dashed 1px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: white;
+}
+
+.upload-area i {
+  font-size: 20px;
+  color: #4A69E2;
+  cursor: pointer;
+}
+
+.upload-list {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
+}
+
+.upload-list-items {
+  background: #FAFAFA;
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr;
+  gap: 16px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.upload-list-img {
+  border-radius: 8px;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+}
+
+.upload-list-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.progress-area{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.progress-area p {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.progress-bar{
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.3s ease ;
+}
+
+.upload-status-icon {
+  color: #3b82f6;
+  background: white;
+  padding: 6px;
+  justify-self: center;
+}
+
+.upload-delete-icon {
+  color: red;
+  padding : 6px;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-self: right;
+  align-items: center;
+}
+
+.button-create {
+  border: black solid 1px;
+  border-radius: 8px;
+  padding: 8px 30px 8px 30px;
+  font-size: 14px;
+}
+
+.button-create:hover {
+  background: black;
+  color: white;
+  transition: 0.2s;
+}
+
+.button-cancel {
+  background: #D00000;
+  color: white;
+  border-radius: 8px;
+  border: background 1px solid;
+  padding: 8px 30px 8px 30px;
+  font-size: 14px;
+}
+
+.button-cancel:hover {
+  background: white;
+  color: #D00000;
+  border: black solid 1px;
+  transition: 0.2s;
+}
+
+

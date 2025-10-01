@@ -1,0 +1,46 @@
+<header
+  class="fixed top-0 left-0 w-full z-50 flex justify-between p-[30px] pl-[100px] pr-[20px] transition-all duration-300"
+  [class.bg-white]="isScrolled"
+  [class.shadow-md]="isScrolled">
+  <div class="font-semibold text-4xl text-black">MyIphoneShop</div>
+  <nav class="flex items-center space-x-[75px]">
+    <a routerLink="/home" class="text-base font-medium">Home</a>
+    <a href="#" class="text-base font-medium">Shop</a>
+    <a href="#" class="text-base font-medium">About</a>
+    <a href="#" class="text-base font-medium">Contact</a>
+  </nav>
+  <div class="flex items-center space-x-[45px]">
+    <i class="fa-solid fa-user text-lg cursor-pointer bg-black"></i>
+    <i class="fa-solid fa-magnifying-glass text-lg cursor-pointer"></i>
+    <i class="fa-regular fa-heart text-lg cursor-pointer"></i>
+    <div class="relative" (mouseenter)="showCart = true" (mouseleave)="showCart = false">
+      <i routerLink="/cart" class="fa-solid fa-cart-shopping text-lg cursor-pointer"></i>
+<!--      <app-cart-popup *ngIf="showCart" class="absolute hidden group-hover:block z-50"-->
+<!--                      (mouseenter)="showCart = true"-->
+<!--                      (mouseleave)="showCart = false"></app-cart-popup>-->
+      <div *ngIf="showCart" class="mini-cart-popup" (mouseenter)="showCart = true"
+           (mouseleave)="showCart = false">
+        <h1>Shopping Cart</h1>
+        <div class="product">
+          <div class="image-container">
+            <img
+              src="https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com//content/61/d6/0fa2a5cc43b4aa283a2c5175c4b9/mango._TTW_._CR0,0,720,720_._SR580,580_._QL100_.jpg">
+          </div>
+          <div>
+            <p>Asgard sofa</p>
+            <p>1 x Rs. 250,000.00</p>
+          </div>
+          <div class="remove-icon">
+            <i class="fas fa-trash-alt"></i>
+          </div>
+        </div>
+        <div class="cart-footer">
+          <p>Total products</p>
+          <button routerLink="/cartu">Go to cart</button>
+        </div>
+      </div>
+    </div>
+    <i routerLink="/auth/login" class="fas fa-sign-out-alt text-lg cursor-pointer hover:text-blue-600"
+       title="Logout"></i>
+  </div>
+</header>
