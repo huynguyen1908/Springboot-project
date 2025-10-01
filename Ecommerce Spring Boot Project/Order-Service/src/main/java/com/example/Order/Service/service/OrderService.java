@@ -14,7 +14,6 @@ public interface OrderService {
     ApiResponse<Object> cancelOrder(String orderId);
     ApiResponse<Object> getOrderHistoryByUser(String userId, Pageable pageable);
     ApiResponse<Object> getOrderDetails(String orderId);
-    ApiResponse<Object> getAllOrders(Pageable pageable);
     ApiResponse<Object> getListOrder(Pageable pageable);
-    void updateOrderStatus(String orderId, String status);
+    ApiResponse<Object> updateOrderStatus(String orderId, String status);
 }

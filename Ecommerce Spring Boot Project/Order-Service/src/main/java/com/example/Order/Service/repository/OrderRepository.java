@@ -11,9 +11,6 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, String> {
-    @Query(value = "Select * from orders",
-            countQuery = "Select count(*) from orders",
-            nativeQuery = true)
     Page<Order> findAll(Pageable pageable);
 
     @Query(value = "select o from Order o where o.userId = :userId")

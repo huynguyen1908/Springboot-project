@@ -12,5 +12,5 @@ public class OrderDetailDTO {
     String skuCode;
     String productName;
     int quantity;
-    double price;
+    Double price;
 }

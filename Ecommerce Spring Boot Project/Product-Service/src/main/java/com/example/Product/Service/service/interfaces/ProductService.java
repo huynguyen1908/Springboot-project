@@ -1,11 +1,13 @@
 package com.example.Product.Service.service.interfaces;
 
 import com.example.Product.Service.dto.request.CreateProductRequest;
+import com.example.Product.Service.dto.request.ProductFilter;
 import com.example.Product.Service.dto.request.UpdateProductRequest;
 import com.example.Product.Service.dto.response.ProductDTO;
 import com.example.Product.Service.entity.Product;
 import com.example.Product.Service.repository.ProductRepository;
 import org.example.dto.response.ApiResponse;
+import org.example.dto.response.PageResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Filter;
 
 public interface ProductService {
 
     ApiResponse<ProductDTO> createProduct(CreateProductRequest productRequest);
 
-    Page<ProductDTO> getProductList(Pageable pageable);
+    PageResponse<ProductDTO> getProductList(Pageable pageable);
 
     ProductDTO getProductById(String productId);
 
@@ -32,4 +35,5 @@ public interface ProductService {
     Map<Long,String> getProductImageList(String productId);
 
     void deleteProductImage(String productId, String imageId);
+    PageResponse<ProductDTO> getProductsByFilter(ProductFilter filter, Pageable pageable);
 }

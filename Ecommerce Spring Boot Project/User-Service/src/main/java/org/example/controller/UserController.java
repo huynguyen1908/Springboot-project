@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @GetMapping("/user-detail/{userId}")
-    public ResponseEntity<ApiResponse<Object>> getUserDetail(@PathVariable String userId) {
-        return ResponseEntity.ok().body(userService.getUserDetail(userId));
+    public ApiResponse<Object> getUserDetail(@PathVariable String userId) {
+        return userService.getUserDetail(userId);
     }
 
     @PutMapping("/update/{userId}")
@@ -67,4 +67,8 @@ public class UserController {
         return userService.getUserAvatar(userId);
     }
 
+    @GetMapping("/get-username/{userId}")
+    public String getUsernameByUserId(@PathVariable("userId") String userId) {
+        return userRepository.getUsernameByUserId(userId);
+    }
 }

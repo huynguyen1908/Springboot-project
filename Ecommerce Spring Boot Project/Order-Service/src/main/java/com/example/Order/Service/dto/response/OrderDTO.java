@@ -7,6 +7,7 @@ import com.example.Order.Service.entity.OrderDetail;
 import lombok.Data;
 
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,12 +15,14 @@ import java.util.List;
 public class OrderDTO {
     String orderId;
     String userId;
+    String username;
     String status;
     LocalDateTime orderDate;
     String shippingMethod;
     String paymentMethod;
     LocalDateTime shippedAt;
     String address;
+    Double totalAmount;
     LocalDateTime createdAt;
     List<OrderDetailDTO> orderDetailList;
 }

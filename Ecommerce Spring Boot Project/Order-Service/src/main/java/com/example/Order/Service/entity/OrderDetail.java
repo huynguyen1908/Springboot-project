@@ -1,5 +1,6 @@
 package com.example.Order.Service.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,10 +16,10 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    @JsonManagedReference
+    @JsonBackReference
     Order order;
 
     String skuCode;
     int quantity;
-    double totalPrice;
+    Double price;
 }

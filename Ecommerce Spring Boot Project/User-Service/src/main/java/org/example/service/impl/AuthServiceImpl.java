@@ -1,6 +1,6 @@
 package org.example.service.impl;
 
-import org.example.client.CartClient;
+import org.example.client.ProductClient;
 import org.example.dto.request.LoginRequest;
 import org.example.dto.request.RegisterRequest;
 import org.example.dto.response.ApiResponse;
@@ -33,7 +33,7 @@ public class AuthServiceImpl implements AuthService {
     private UserMapper userMapper;
 
     @Autowired
-    private CartClient cartClient;
+    private ProductClient productClient;
 
     @Override
     public LoginResponse login(LoginRequest request) {
@@ -74,7 +74,7 @@ public class AuthServiceImpl implements AuthService {
         user.setActive(true);
         userRepository.save(user);
 
-        cartClient.createCart(user.getUserId());
+        productClient.createCart(user.getUserId());
         return ApiResponse.builder().message("Register successful!").data(null).build();
     }
 

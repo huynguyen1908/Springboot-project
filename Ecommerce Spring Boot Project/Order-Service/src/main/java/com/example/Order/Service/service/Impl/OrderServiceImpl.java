@@ -2,6 +2,7 @@ package com.example.Order.Service.service.Impl;
 
 import com.example.Order.Service.dto.request.OrderRequest;
 import com.example.Order.Service.dto.response.OrderDTO;
+import com.example.Order.Service.dto.response.OrderDetailDTO;
 import com.example.Order.Service.entity.Order;
 import com.example.Order.Service.entity.OrderDetail;
 import com.example.Order.Service.enums.Status;
@@ -10,8 +11,9 @@ import com.example.Order.Service.mapper.OrderMapper;
 import com.example.Order.Service.repository.OrderRepository;
 import com.example.Order.Service.service.OrderService;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.core.SecurityContext;
 import org.example.client.InventoryClient;
+import org.example.client.ProductClient;
+import org.example.client.UserClient;
 import org.example.dto.request.InventoryCheckRequest;
 import org.example.dto.request.StockUpdateRequest;
 import org.example.dto.response.ApiResponse;
@@ -37,13 +39,17 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
 
     private final InventoryClient inventoryClient;
+    private final UserClient userClient;
+    private final ProductClient productClient;
 
     @Autowired
     private KafkaTemplate<String, OrderCreatedEvent> orderCreatedEventKafkaTemplate;
 
     @Autowired
-    public OrderServiceImpl(InventoryClient inventoryClient) {
+    public OrderServiceImpl(InventoryClient inventoryClient, UserClient userClient, ProductClient productClient) {
         this.inventoryClient = inventoryClient;
+        this.userClient = userClient;
+        this.productClient = productClient;
     }
 
     @Override
@@ -127,26 +133,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ApiResponse<Object> getOrderDetails(String orderId) {
+        OrderDTO orderDTO = orderRepository.findById(orderId).map(orderMapper::toDTO).orElseThrow();
+        orderDTO.setUsername(userClient.getUsernameByUserId(orderDTO.getUserId()));
+        Double total = orderDTO.getOrderDetailList().stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .sum();
+        orderDTO.setTotalAmount(total);
+        orderDTO.getOrderDetailList().parallelStream().forEach(orderDetail -> {
+            orderDetail.setProductName(productClient.getProductNameBySkuCode(orderDetail.getSkuCode()));
+            System.out.println(orderDetail.getProductName() + " " + orderDetail.getPrice());
+        });
         return ApiResponse.builder()
                 .code(StatusCode.SUCCESS.getCode())
                 .message(StatusCode.SUCCESS.getMessage())
-                .data(orderRepository.findById(orderId).map(orderMapper::toDTO))
-                .build();
-    }
-
-    @Override
-    public ApiResponse<Object> getAllOrders(Pageable pageable) {
-        Page<OrderDTO> orderDTOList = orderRepository.findAll(pageable).map(orderMapper::toDTO);
-        return ApiResponse.builder()
-                .code(StatusCode.SUCCESS.getCode())
-                .message(StatusCode.SUCCESS.getMessage())
-                .data(new PageResponse<>(orderDTOList.getContent(), orderDTOList.getTotalPages(), orderDTOList.getTotalElements()))
+                .data(orderDTO)
                 .build();
     }
 
     @Override
     @Transactional
-    public void updateOrderStatus(String orderId, String status) {
+    public ApiResponse<Object> updateOrderStatus(String orderId, String status) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found with id: " + orderId));
 
@@ -156,21 +162,37 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Invalid status: " + status);
         }
 
-        if (order.getStatus() == Status.SHIPPED) {
+        if (order.getStatus().toString().toUpperCase().equals(Status.SHIPPED.toString())) {
             order.setShippedAt(LocalDateTime.now());
         }
 
         orderRepository.save(order);
+        return ApiResponse.builder()
+                .code(StatusCode.SUCCESS.getCode())
+                .message("Order status updated successfully")
+                .data(orderMapper.toDTO(order))
+                .build();
     }
 
     @Override
     public ApiResponse<Object> getListOrder(Pageable pageable) {
-        Page<OrderDTO> orders = orderRepository.findAll(pageable).map(orderMapper::toDTO);
+        Page<OrderDTO> orderDTOList = orderRepository.findAll(pageable).map(order -> {
+            OrderDTO dto = orderMapper.toDTO(order);
+            dto.setUsername(userClient.getUsernameByUserId(order.getUserId()));
+            Double total = order.getOrderDetailList().stream()
+                    .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                    .sum();
+            dto.setTotalAmount(total);
+            dto.getOrderDetailList().parallelStream().forEach(orderDetail -> {
+                orderDetail.setProductName(productClient.getProductNameBySkuCode(orderDetail.getSkuCode()));
+            });
+            return dto;
+        });
+
         return ApiResponse.builder()
                 .code(StatusCode.SUCCESS.getCode())
                 .message(StatusCode.SUCCESS.getMessage())
-                .data(new PageResponse<>(orders.getContent(), orders.getTotalPages(), orders.getTotalElements()))
+                .data(new PageResponse<>(orderDTOList.getContent(), orderDTOList.getTotalPages(), orderDTOList.getTotalElements()))
                 .build();
-
     }
 }

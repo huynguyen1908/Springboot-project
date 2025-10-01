@@ -1,6 +1,7 @@
 package com.example.Product.Service.service.impl;
 
 import com.example.Product.Service.dto.request.CreateProductRequest;
+import com.example.Product.Service.dto.request.ProductFilter;
 import com.example.Product.Service.dto.request.UpdateProductRequest;
 import com.example.Product.Service.dto.response.ProductDTO;
 import com.example.Product.Service.entity.Image;
@@ -12,6 +13,7 @@ import com.example.Product.Service.mapper.ProductMapper;
 import com.example.Product.Service.repository.CategoryRepository;
 import com.example.Product.Service.repository.ImageRepository;
 import com.example.Product.Service.repository.ProductRepository;
+import com.example.Product.Service.repository.ProductSpecification;
 import com.example.Product.Service.service.interfaces.CategoryService;
 import com.example.Product.Service.service.interfaces.ProductService;
 
@@ -20,9 +22,11 @@ import org.example.client.CloudinaryClient;
 //import org.example.client.UserClient;
 import org.example.client.InventoryClient;
 import org.example.dto.response.ApiResponse;
+import org.example.dto.response.PageResponse;
 import org.example.exception.StatusCode;
-import org.example.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -55,8 +59,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ImageRepository imageRepository;
 
-    private static JwtUtil jwtUtil;
-
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -72,6 +74,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "product-list", allEntries = true)
     public ApiResponse<ProductDTO> createProduct(CreateProductRequest productRequest) {
         Product product = productMapper.fromCreateRequest(productRequest);
         product.setCategory(categoryRepository.findById(productRequest.getCategoryId())
@@ -121,13 +124,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDTO> getProductList(Pageable pageable) {
+//    @Cacheable(value = "product-list", key = "#pageable.pageNumber + '-' + #pageable.pageSize + '-' + #pageable.sort.toString()")
+    public PageResponse<ProductDTO> getProductList(Pageable pageable) {
         Page<Product> productPage = productRepository.findAll(pageable);
-        Page<ProductDTO> productDTOPage = productPage.map(productMapper::toDTO);
-        return productDTOPage;
+        List<ProductDTO> productDTOList = productPage.stream().parallel().map(product -> {
+            ProductDTO productDTO = productMapper.toDTO(product);
+            Map<Long,String> imageUrls = getProductImageList(product.getProductId());
+            productDTO.setImageUrl(imageUrls);
+//            productDTO.setImageUrl(getProductImageList(product.getProductId()));
+            return productDTO;
+        }).toList();
+        return new PageResponse<>(productDTOList, productPage.getTotalPages(), productPage.getTotalElements());
     }
 
     @Override
+    @Cacheable(value = "product-detail", key = "#productId")
     public ProductDTO getProductById(String productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -145,6 +156,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(value = "product-list", allEntries = true)
     public void deleteProduct(String productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -152,6 +164,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(value = {"product-detail", "product-list"}, allEntries = true)
     public ProductDTO editProduct(String productId, UpdateProductRequest request) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -232,5 +245,19 @@ public class ProductServiceImpl implements ProductService {
         image.setUpdatedBy(username);
         image.setUpdatedAt(LocalDateTime.now());
         imageRepository.save(image);
+    }
+
+    @Override
+    public PageResponse<ProductDTO> getProductsByFilter(ProductFilter filter, Pageable pageable) {
+        Page<Product> productsPage = (Page<Product>) productRepository.findAll(ProductSpecification.getProductByFilter(filter, pageable));
+        List<ProductDTO> products = productRepository.findAll(ProductSpecification.getProductByFilter(filter, pageable)).parallelStream().map(
+                p -> {
+                    ProductDTO productDTO = productMapper.toDTO(p);
+                    Map<Long,String> imageUrls = getProductImageList(p.getProductId());
+                    productDTO.setImageUrl(imageUrls);
+                    return productDTO;
+                }
+        ).collect(Collectors.toList());
+        return new PageResponse<>(products, productsPage.getTotalPages(), productsPage.getTotalElements());
     }
 }
